@@ -1,0 +1,977 @@
+-----------------------------------------------------------myhsptl.html-----------------------------------------------------
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	
+
+	<title>
+			Hospital Management System
+			</title>
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<style>
+		body {
+			background: #000000;
+			font-family: Lato, Helvetica, Arial, sans-serif;
+			color: #434a54;
+		}
+
+		h2 {
+			font-size: 23px;
+			line-height: 24px;
+			margin: 0 0 23px 0;
+		}
+
+		.suggestive {
+			font-weight: bold;
+			font-size: 28px !important;
+			color: #fff;
+			text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+			margin: 30px 10px 20px 10px;
+			text-align: center;
+		}
+
+
+		img {
+			display: block;
+			width: 82px;
+			margin-left: auto !important;
+			margin-right: auto !important;
+			opacity: 0.6;
+			filter: alpha(opacity=60);
+		}
+
+		.input-group,
+		.form-group {
+			margin: 20px 10px 20px 10px;
+		}
+
+		.btn-block {
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.logo_image{
+			opacity: 1.0;
+			filter: alpha(opacity=100);
+				height:220px;
+			width:320px;
+		}
+		
+		blockquote {
+			border: 0px;
+			color: #ffffff;
+			text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+			font-style: normal;
+			margin-left: 32px;
+			font-family: "Segoe Print", "Times New Roman", Verdana, cursive;
+			padding-left: 68px;
+			background: url("blockquote.png");
+			background-repeat: no-repeat;
+			min-height: 60px;
+		}
+	</style>
+	<link rel="shortcut icon" href="logo1.png">
+</head>
+<body>
+	
+	<section class="portal-form container-fluid">
+		<div class="row">
+
+
+<div class="col-md-4 col-sm-5 col-md-offset-4">
+	<a><img src="logo1.png" alt="" class="logo_image"></a>
+
+		
+		<form action="condition.jsp"method="POST">
+		<input type="hidden" name="_token" value="notrequired">
+		<h2 class="suggestive">Welcome to Hospital Management System</h2>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+			<input type="text" name="username" value="" class="form-control" required="" placeholder="Username" aria-describedby="sizing-addon1">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+			<input type="password" name="password" value="" class="form-control" required="" placeholder="Password" aria-describedby="sizing-addon1">
+		</div>
+		<div class="row">
+			
+			<div class="col-md-12" style="text-align:center;">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Login</button>
+			</div>
+		</div>
+	</form>
+</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+				<blockquote>TE PL1-B1 Assignment Project</blockquote>
+			</div>
+			<div class="col-md-4">
+			</div>
+		</div>
+	</section>
+
+	
+
+	<!-- Scripts are placed here -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+	<script>
+	$(document).ready(function () {
+		$('body').backstretch([
+			"hospitalback1.jpg",
+			"hospitalback2.jpg",
+			"hospitalback3.jpg"
+			], {
+				duration: 3000,
+				fade: 750
+			});
+
+	});
+</script>
+</div>
+
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------condition.jsp-------------------------------------------------------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<html>
+<body>
+<%		
+  			
+            String user=new String(request.getParameter("username"));
+            String password=new String(request.getParameter("password"));
+            if(user.equals("admin") && password.equals("admin"))
+            {
+            	response.sendRedirect("menu.jsp");           		
+            }
+            else
+            {
+                %>
+                <H1>Invalid Password</H1>
+                <br>
+                <a href="myhsptl.html"> Try again..</a>
+                <%
+            }
+            %>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------menu.jsp-----------------------------------------------------------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+  <head>  
+  	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+			<title>
+			Hospital Management System
+			</title>
+  
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+    <style>
+	body{
+	text-align:center;
+	background:url('menuback2.jpg');
+	}
+	.header {
+	  background-color: rgba(255, 255, 255, 0.1);
+	  
+	}
+	.header h1{
+	color:#ffffff;
+	font-size:50px;
+	}
+	.well{
+		background:url('wellack1.png');
+		border:0px;
+	}
+	.well h2{
+	color:#FFFFA3;
+	font-family: Lato, Helvetica, Arial, sans-serif;
+	font-size:32px;
+	}
+	.well p{
+	color:#ffffff;
+	font-size:20px;
+	}
+	blockquote
+	{
+	color:#ffffff;
+	}
+	.supporting img {
+		height: 80px;
+}
+	.supporting  {
+		background-color:#ffffff;
+}
+
+	</style>
+	
+	
+  </head>
+
+  <body>
+	<div class="header">
+<span class="title"><h1>Hospital Management System</h1></span>
+	</div>
+	<div class="menu">
+		<div class="col-md-2">
+						<div class="supporting">
+							
+									  <img src="admin.png">
+									  <h2>admin</h2>
+									  <p>(Admin)</p>
+						</div>
+		
+		</div>
+			<div class="col-md-8">
+				
+					<div class="well">
+							<h2>Select The Operations:</h2>
+							<p>Want to create a new Entry?</p>
+								<a href="registration.jsp"><button class="btn btn-lg btn-primary ">Click Here</button></a>
+							<hr>
+							<p>Register an appointment.</p>
+								<a href="appointmentregistration.jsp"><button class="btn btn-lg btn-primary ">Click Here</button></a>
+							<hr>
+							<p>Want to Display Entry?</p>
+								<a href="details.jsp"><button class="btn btn-lg btn-danger">Click Here</button></a>
+							<hr>
+							<p>Want to Delete a Entry?</p>
+								<a  href="delete.jsp"><button class="btn btn-lg btn-info">Click Here</button></a>
+							<hr>
+							<p>Try other options.</p>
+								<a  href="display.html"><button class="btn btn-lg btn-info">Click Here</button></a>
+					</div>
+				
+			</div>
+		<div class="col-md-2">
+		<blockquote>Want to Logout??
+	<form action="myhsptl.html" method="post">
+		<input type="submit" class="btn btn-md btn-success" value="Log Out">
+	</form>
+		</blockquote>
+		</div>
+	</div>
+  
+  </body>
+  </html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------registration.jsp-----------------------------------------------------------------------------
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Registration for new Patient</h1>
+        <form method="post" action="registrationstatus.jsp">
+            Name    :<input type="text" name="Pname"> <br>
+            DOB     :<input type="text" name="Pdob"> <br>
+            BG      :<input type="text" name="Pbg"> <br>
+            Phone No.  :<input type="text" name="Pphno"><br>
+            Address :<input type="text" name="Padd" ><br>
+            Ht :<input type="text" name="Pht" ><br>
+            Wt :<input type="text" name="Pwt" ><br>
+            Pincode :<input type="text" name="Ppin" ><br>
+            City :<input type="text" name="Pcity" ><br>
+            Email :<input type="text" name="Pemail" ><br>
+            <hr>
+            <input  type="submit" value="Register">
+        </form>
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------registrationstatus.jsp-----------------------------------------------------------------------------
+
+<%@ page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        
+        <%
+        	//int Pid=Integer.parseInt(request.getParameter("Pid"));
+            String Pname=request.getParameter("Pname");
+            String Pdob=request.getParameter("Pdob");
+            String Pbg=request.getParameter("Pbg");
+            String Padd=request.getParameter("Padd");
+            String Pphno=request.getParameter("Pphno");
+            //String Pht=request.getParameter("Pht");
+            int Pwt=Integer.parseInt(request.getParameter("Pwt"));
+            int Pht=Integer.parseInt(request.getParameter("Pht"));
+            //int Pphno=Integer.parseInt(request.getParameter("Pphno"));
+            String Ppin=request.getParameter("Ppin");
+            String Pcity=request.getParameter("Pcity");
+            String Pemail=request.getParameter("Pemail");
+           String Pid="";
+            Pid+=Pname.charAt(0);
+           Pid+=Pname.charAt(Pname.length()-1);
+           String[] dob = new String[4];
+           dob=Pdob.split("/");
+            Pid+=dob[0];
+          Pid+=dob[1];
+           Pid+=dob[2];
+          Pid+=Pphno.charAt(5);
+          out.println(Pid);
+            try
+            {
+            Statement stmt;
+            Connection con;
+            String url = "jdbc:mysql://localhost:3306/Bproject";
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "root", "vikas1314"); 
+            stmt = con.createStatement();
+            stmt.executeUpdate("Insert into patient values('"+Pid+"','"+Pname+"','"+Pdob+"','"+Pbg+"','"+Pphno+"','"+Padd+"','"+Pht+"','"+Pwt+"','"+Ppin+"','"+Pcity+"','"+Pemail+"')");
+            out.println("Registration Successful .....");
+            con.close();
+            
+            }
+            catch(SQLException e)
+            {
+                out.println(e);
+                out.println("Exception!!!");
+            }
+        %>
+        <h1>Registration Successful .....</h1>
+        <a href="menu.jsp"> Click here to go to Home Page</a>
+            
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------appointmentregistration.jsp-----------------------------------------------------------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+       <h1>Appointment Registration </h1>
+        <form method="post" action="appregstatus.jsp">
+            
+            patient ID    :<input type="text" name="Pid"> <br>
+            Date      :<input type="date" name="ADate"> <br>
+            Time      :<input type="time" name="ATime"> <br>
+            Diagnosis:<input type="text" name="Diagnosis"><br>
+            
+            <hr>
+            <input  type="submit" value="Appointment Register">
+        </form>
+    </body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------appregstatus.jsp------------------------------------------------------------------------
+
+
+<%@ page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSP Page</title>
+    </head>
+    <body>
+        
+        <%
+            String Pid=request.getParameter("Pid");
+            String ADate=request.getParameter("ADate");
+            String ATime=request.getParameter("ATime");
+            String Diagnosis=request.getParameter("Diagnosis");
+            try
+            {
+            Statement stmt;
+            Connection con;
+            String url = "jdbc:mysql://localhost:3306/Bproject";
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "root", "vikas1314"); 
+
+            stmt = con.createStatement();
+            stmt.executeUpdate("Insert into appointment values("+"'"+Pid+"','"+ADate+"','"+ATime+"','"+Diagnosis+"');");
+            con.close();
+            }
+            catch(SQLException e)
+            {
+                out.println(e);
+            }
+        %>
+        <h1>Registation Successfull.....</h1>
+        <a href="menu.jsp"> Click here to go to Menu Page</a>
+            
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------details.jsp------------------------------------------------------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <form action="patientdetails.jsp" method="post">
+            <!-- Pid: <input type="text" value="Patient ID here" name="PDid"-->
+            Pid:<input type="text"  placeholder="Patient ID here" name="PDid"> 
+            <input type="submit" value="View Details">
+        </form>
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------patientdetails.jsp------------------------------------------------------------------------
+<%@ page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <table border="2" align= "center"  valign="center">
+        
+        <%
+            try
+            {
+            String Pid=request.getParameter("PDid");
+            Statement stmt;
+            Connection con;
+            String url = "jdbc:mysql://localhost:3306/Bproject";
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "root", "vikas1314"); 
+
+            stmt = con.createStatement();
+		%>
+		<tr>
+			<td>
+			<% out.println("Patient Id:");%>
+			</td>
+			<td>
+			<% out.println("Patient name");%>
+			</td><td>
+			<% out.println("P DOB");%>
+			</td><td>
+			<% out.println("P BG");%>
+			</td><td>
+			<% out.println("PPhno");%>
+			</td>
+                        <td>
+			<% out.println("Padd");%>
+			</td>
+		</tr><%
+			String s="";
+                        s+="select pid,name,dob,bg,phno,address from patient where pid=";
+                        s+="'";
+                        s+=Pid;
+                        s+="';";
+			ResultSet rs=stmt.executeQuery(s);
+			while(rs.next())
+			{%>
+		<tr>
+			<td>
+			<% out.println(rs.getString("pid"));%>
+			</td><td>
+			<% out.println(rs.getString(2));%>
+			</td><td>
+			<% out.println(rs.getString(3));%>
+			</td><td>
+			<% out.println(rs.getString(4));%>
+			</td>
+                        <td>
+			<% out.println(rs.getString(5));%>
+			</td>
+                        <td>
+			<% out.println(rs.getString(6));%>
+			</td>
+		</tr>
+			<%
+                        }
+            con.close();
+                        }
+                        catch(SQLException e)
+                        {
+                            out.println(e);
+                        }
+            %>
+        </table>
+        <br>
+        <br>
+        <a href="menu.jsp"> Go to Home Page...</a>
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------delete.jsp------------------------------------------------------------------------
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <form action="patientdelete.jsp" method="post">
+            <!-- Pid: <input type="text" value="Patient ID here" name="PDid"-->
+            Pid:<input type="text"  placeholder="Patient ID here" name="PDid"> 
+            <br><input type="submit" value="Delete and View Details">
+        </form>
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------patientdelete.jsp------------------------------------------------------------------------
+<%@ page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <table border="2" align= "center"  valign="center">
+        
+        <%
+            try
+            {
+            String Pid=request.getParameter("PDid");
+            Statement stmt;
+            Connection con;
+            String url = "jdbc:mysql://localhost:3306/Bproject";
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "root", "vikas1314"); 
+
+            stmt = con.createStatement();
+            stmt.executeQuery("set foreign_key_checks=0;");
+            stmt.executeUpdate("Delete from patient where pid=("+"'"+Pid+"'"+");");
+		%>
+	<tr>
+			<td>
+			<% out.println("Patient Id:");%>
+			</td>
+			<td>
+			<% out.println("Patient name");%>
+			</td><td>
+			<% out.println("P DOB");%>
+			</td><td>
+			<% out.println("P BG");%>
+			</td><td>
+			<% out.println("PPhno");%>
+			</td>
+                        <td>
+			<% out.println("Padd");%>
+			</td>
+		</tr><%
+			String s="";
+                        s="select pid,name,dob,bg,phno,address from patient";
+			ResultSet rs=stmt.executeQuery(s);
+			while(rs.next())
+			{%>
+		<tr>
+			<td>
+			<% out.println(rs.getString("pid"));%>
+			</td><td>
+			<% out.println(rs.getString(2));%>
+			</td><td>
+			<% out.println(rs.getString(3));%>
+			</td><td>
+			<% out.println(rs.getString(4));%>
+			</td>
+                        <td>
+			<% out.println(rs.getString(5));%>
+			</td>
+                        <td>
+			<% out.println(rs.getString(6));%>
+			</td>
+		</tr>
+			<%
+                        }
+            con.close();
+                        }
+                        catch(SQLException e)
+                        {
+                            out.println(e);
+                        }
+            %>
+        </table>
+        <br>
+        <br>
+        <a href="menu.html"> Go to Home Page...</a>
+    </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------display.html------------------------------------------------------------------------
+<html>
+<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+			<title>
+			Hospital Management System
+			</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	
+	<style>
+	body{
+	background:url('menuback1.jpg');
+	padding-top:100px;
+	}
+	.well{
+	background-color:#000000;
+	}
+	.well h1{
+	color:#ffffff;
+	font-size:30px;
+	}
+	.well span{
+	color:#9999FF;
+	font-size:20px;
+	}
+	.col-md-2{
+	padding-top:300px;
+	}
+		.header {
+	  background-color: rgba(255, 153, 0, 0.1);
+	
+	  
+	}
+	.header h1{
+	color:#ffffff;
+	font-size:50px;
+	padding-left:30px;
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="header">
+<span class="title"><h1>Hospital Management System</h1></span>
+	</div>
+
+<div class="col-md-2">&nbsp;</div>
+<div class="col-md-8">
+<div class="well">
+<form action="display.jsp" method="post">
+<h1>Select Query from  given List:</h1>
+<input type="radio" name="Query" value="Query5"><span> List the patients who have taken treatment from the hospital.</span><br>
+<input type="radio" name="Query" value="Query6"><span> List the beds which are now assigned to any patient.</span><br>
+<input type="radio" name="Query" value="Query7"><span> List the patients having height gt 5 using left join and order by query.</span> <br>
+<input type="radio" name="Query" value="Query8"><span> List the patients having height gt 5 using left join and group by query. </span><br>
+<input type="radio" name="Query" value="Query9"><span> Count the patients admited on particular date.</span><br>
+<input type="radio" name="Query" value="Query10"><span>Distinct using </span><br>
+<input type="submit" class="btn btn-md btn-success" value="SUBMIT">
+</form>
+</div>
+</div>
+<div class="col-md-2"><a href="menu.html"><button class="btn btn-lg btn-danger">Go Back</button></a></div>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------display.jsp------------------------------------------------------------------------
+
+<%@ page import= "java.sql.*" %>
+<html>				
+<body >
+<table border="2" align= "center"  valign="center">
+
+<%
+try
+	{
+		//String username="root";
+		//String password="passwd";
+		String Query=new String(request.getParameter("Query"));
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Bproject","root","vikas1314");
+		Statement st=con.createStatement();
+		ResultSet rs;
+	if(Query.equals("Query5"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query5:People took treatment from Hospital");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Pid");%>
+			</td>
+			<td>
+			<% out.println("Name");%>
+			</td>
+		</tr>
+		<%
+			String s="select p.pid,p.name from patient p inner join treatment t on p.pid=t.Pid;";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{
+		%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(2));%>
+			</td>
+		</tr>
+		<%
+			}
+		}
+		if(Query.equals("Query6"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query6:Status of beds assigned");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Pid");%>
+			</td>
+			<td>
+			<% out.println("Bedid");%>
+			</td>
+		</tr>
+		<%
+			String s=" select Pid,Bedid from ward_bill;";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{
+		%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(2));%>
+			</td>
+			</tr>
+		<%
+			}
+		}
+		if(Query.equals("Query7"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query7:List having height gt 5 using order by.");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Pid");%>
+			</td>
+			<td>
+			<% out.println("ADate");%>
+			</td>
+			<td>
+			<% out.println("Atime");%>
+			</td>
+		</tr>
+		<%
+			String s="SELECT p.pid,a.ADate,a.ATime FROM patient p left join appointment a on p.pid=a.Pid WHERE Ht > 5 ORDER BY pid ASC limit 5;";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(2));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(3));%>
+			</td>
+		</tr>
+		<%
+			}
+		}
+		if(Query.equals("Query8"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query8:List having height gt 5 using group by.");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Pid");%>
+			</td>
+			<td>
+			<% out.println("ADate");%>
+			</td>
+			<td>
+			<% out.println("Atime");%>
+			</td>
+		</tr>
+		<%
+			String s="SELECT p.pid,a.ADate,a.ATime FROM appointment a RIGHT join patient p on p.pid=a.Pid WHERE Ht > 5 GROUP BY pid ASC;";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{
+		%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(2));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(3));%>
+			</td>
+		</tr>
+		<%
+			}
+		}
+		
+		if(Query.equals("Query9"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query9:Count of patients admited on particular date");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Count");%>
+			</td>
+		</tr>
+		<%
+			String s="select count(a.pid) from patient p left join appointment a on p.pid=a.Pid where ADate='2015-09-20';";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{
+		%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+		</tr>
+		<%
+			}
+		}
+		
+		if(Query.equals("Query10"))
+		{
+			int i=1;
+		%>
+		<center><%out.println("Query10:Distict usage");%></center>
+		<tr>
+			<td>
+			<% out.println("Sr No.");%>
+			</td>
+			<td>
+			<% out.println("Pid");%>
+			</td>
+			<td>
+			<% out.println("ADate");%>
+			</td>
+		</tr>
+		<%
+			String s="select p.pid, a.ADate from patient p inner join admited a using(pid);";
+			rs=st.executeQuery(s);
+			while(rs.next())
+			{
+		%>
+		<tr>
+			<td>
+			<% out.println(i++);%>
+			</td>
+			<td>
+			<% out.println(rs.getString(1));%>
+			</td>
+			<td>
+			<% out.println(rs.getString(2));%>
+			</td>
+		</tr>
+		<%
+			}
+		}
+		
+		
+		con.close();
+		}
+		
+		catch (Exception e)
+		{
+		%>
+		<tr>
+			<td><%
+			out.println(e);%></td>
+			<td><%
+			out.println("Exception Caught");%>
+			</td>
+		</tr><%
+		}
+		%>
+		</table>
+	</body>
+	</html>
+
+

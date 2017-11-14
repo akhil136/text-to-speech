@@ -1,0 +1,270 @@
+mysql> use Bproject;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_Bproject |
++--------------------+
+| admited            |
+| appointment        |
+| bed                |
+| bill               |
+| opd_bill           |
+| patient            |
+| room               |
+| test               |
+| treatment          |
+| ward_bill          |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> desc admited;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| Pid   | char(12) | YES  |     | NULL    |       |
+| Bedid | int(11)  | YES  |     | NULL    |       |
+| ADate | date     | YES  |     | NULL    |       |
+| DDate | date     | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc appointment;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Pid       | char(12)    | YES  | MUL | NULL    |       |
+| ADate     | date        | YES  |     | NULL    |       |
+| ATime     | time        | YES  |     | NULL    |       |
+| Diagnosis | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc bed;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| Bedid  | int(11) | NO   | PRI | 0       |       |
+| Roomid | int(11) | YES  | MUL | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc bill;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| Pid              | char(12) | YES  | MUL | NULL    |       |
+| Opd_billcharges  | int(11)  | YES  |     | NULL    |       |
+| ward_billcharges | int(11)  | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Opd_bill;
+ERROR 1146 (42S02): Table 'Bproject.Opd_bill' doesn't exist
+mysql> desc Opd_bill;
+ERROR 1146 (42S02): Table 'Bproject.Opd_bill' doesn't exist
+mysql> desc opd_bill;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| Pid     | char(12) | YES  | MUL | NULL    |       |
+| Charges | int(11)  | YES  |     | NULL    |       |
+| TDate   | date     | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc patient;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| pid     | char(12)    | NO   | PRI |         |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| bg      | char(2)     | YES  |     | NULL    |       |
+| phno    | bigint(20)  | YES  |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
+| Ht      | double      | YES  |     | NULL    |       |
+| Wt      | int(11)     | YES  |     | NULL    |       |
+| Pincode | int(11)     | YES  |     | NULL    |       |
+| City    | char(10)    | YES  |     | NULL    |       |
+| Email   | char(20)    | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+mysql> desc room;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Roomid  | int(11)     | NO   | PRI | 0       |       |
+| Charges | int(11)     | YES  |     | NULL    |       |
+| Type    | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc test;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++-----s----+-------------+------+-----+---------+-------+
+| Pid     | char(12)    | YES  | MUL | NULL    |       |
+| TDate   | date        | YES  |     | NULL    |       |
+| Test    | varchar(20) | YES  |     | NULL    |       |
+| Charges | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc treatment;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Pid       | char(12)     | YES  | MUL | NULL    |       |
+| treatment | varchar(256) | YES  |     | NULL    |       |
+| TDate     | date         | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc ward_bill;
++---------------+----------+------+-----+---------+-------+
+| Field         | Type     | Null | Key | Default | Extra |
++---------------+----------+------+-----+---------+-------+
+| Pid           | char(12) | YES  | MUL | NULL    |       |
+| Roomid        | int(11)  | YES  |     | NULL    |       |
+| Bedid         | int(11)  | YES  |     | NULL    |       |
+| AdmitDate     | date     | YES  |     | NULL    |       |
+| DischargeDate | date     | YES  |     | NULL    |       |
+| bill          | double   | YES  |     | NULL    |       |
++---------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> 
+
+
+mysql> select * from admited;
++------------+-------+------------+------------+
+| Pid        | Bedid | ADate      | DDate      |
++------------+-------+------------+------------+
+| Ke19952154 |     3 | 2015-09-12 | 2015-09-12 |
+| Kh19951231 |     3 | 2015-09-12 | 2015-09-13 |
+| Kh19951231 |     4 | 2015-09-13 | 2015-09-13 |
+| Ke19952154 |     4 | 2015-09-13 | NULL       |
+| Kh1995123  |     5 | 2015-09-13 | NULL       |
++------------+-------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from appointment;
++-------------+------------+----------+-----------+
+| Pid         | ADate      | ATime    | Diagnosis |
++-------------+------------+----------+-----------+
+| Ke19952154  | 2015-08-23 | 12:30:00 | fever     |
+| Me19950267  | 2015-08-23 | 01:30:00 | fever     |
+| Ur19950590  | 2015-09-09 | 01:30:00 | cold      |
+| Ve19950425  | 2015-09-09 | 12:30:00 | fever     |
+| Kh19951231  | 2015-09-09 | 01:30:00 | fever     |
+| Se19952312  | 2015-08-23 | 11:30:00 | cold      |
+| Ke19952154  | 2015-09-09 | 05:30:00 | Fever     |
+| Ke19952154  | 2015-09-12 | 12:30:00 | Fever     |
+| vs199502119 | 2015-08-11 | 11:11:11 | Fever     |
+| as200003118 | 2015-08-11 | 11:11:11 | Cough     |
++-------------+------------+----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from bed;
++-------+--------+
+| Bedid | Roomid |
++-------+--------+
+|     1 |      1 |
+|     2 |      1 |
+|     3 |      1 |
+|     4 |      2 |
+|     5 |      3 |
+|     6 |      4 |
++-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from bill;
++-------------+-----------------+------------------+
+| Pid         | Opd_billcharges | ward_billcharges |
++-------------+-----------------+------------------+
+| vs199502119 |             500 |             3000 |
+| Ve19950425  |             500 |             5000 |
+| Ur19950590  |             500 |             1000 |
+| ah199503299 |             500 |            10000 |
+| as200003118 |            1000 |            10000 |
++-------------+-----------------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from opd_bill;
++-------------+---------+------------+
+| Pid         | Charges | TDate      |
++-------------+---------+------------+
+| vs199502119 |     500 | 0000-00-00 |
+| Ve19950425  |     500 | 0000-00-00 |
+| Ur19950590  |     500 | 0000-00-00 |
+| ah199503299 |     500 | 0000-00-00 |
+| as200003118 |    1000 | 0000-00-00 |
++-------------+---------+------------+
+mysql> select * from patient;
++-------------+------------------+------------+------+-------------+---------+------+------+---------+------+-------------------------+
+| pid         | name             | dob        | bg   | phno        | address | Ht   | Wt   | Pincode | City | Email                   |
++-------------+------------------+------------+------+-------------+---------+------+------+---------+------+-------------------------+
+| ah199503299 | ashish           | 1995-03-29 | A+   |  9999999999 | Katraj  |    6 |   60 |  411043 | Pune | ashishDurgude@gmail.com |
+| as200003118 | akhildes         | 2000-03-11 | O+   | 99998888888 | Katraj  |    6 |   60 |  411043 | Pune | viks@gmail.com          |
+| Ke19952154  | Kshiti Warungase | 1995-09-21 | O+   |  2147483647 | katraj  | NULL |   60 |    NULL | NULL | NULL                    |
+| Kh19951231  | Kamlesh Nikumbh  | 1995-08-12 | a+   |  2147483647 | katraj  | NULL | NULL |    NULL | NULL | NULL                    |
+| Me19950267  | Madhuri Sonawane | 1995-05-02 | A+   |  2147483647 | katraj  | NULL | NULL |    NULL | NULL | NULL                    |
+| Se19952312  | Shubham Shinde   | 1995-07-23 | A+   |  2147483647 | katraj  | NULL | NULL |    NULL | NULL | NULL                    |
+| Ur19950590  | Umesh Vhatkar    | 1995-04-05 | A+   |  1234567890 | Katraj  | NULL | NULL |    NULL | NULL | NULL                    |
+| Ve19950425  | Varun Sonawane   | 1995-08-04 | A+   |  2147483647 | katraj  | NULL | NULL |    NULL | NULL | NULL                    |
+| vs199502119 | vikas            | 1995-02-11 | O+   |      999999 | Katraj  |    6 |   60 |  411043 | Pune | viks@gmail.com          |
++-------------+------------------+------------+------+-------------+---------+------+------+---------+------+-------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from room;
++--------+---------+---------+
+| Roomid | Charges | Type    |
++--------+---------+---------+
+|      1 |     500 | General |
+|      2 |     500 | General |
+|      3 |     500 | General |
+|      4 |    1000 | Special |
++--------+---------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select * from test;
++-------------+------------+------------+---------+
+| Pid         | TDate      | Test       | Charges |
++-------------+------------+------------+---------+
+| Ur19950590  | 2015-09-09 | Jaundice   |     500 |
+| Ur19950590  | 2015-09-12 | Chickenpox |    1200 |
+| vs199502119 | 2015-09-20 | Cholera    |    1000 |
+| Ve19950425  | 2015-09-20 | Malaria    |    1500 |
+| ah199503299 | 2015-09-20 | Diarrhia   |     500 |
++-------------+------------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from treatment;
++-------------+-----------------------------------------------+------------+
+| Pid         | treatment                                     | TDate      |
++-------------+-----------------------------------------------+------------+
+| Ur19950590  | twice a day 15 crosine thrice a day           | 2015-09-09 |
+| Ke19952154  | 2 crosine 4                                   | 2015-09-12 |
+| Ur19950590  |                                               | 2015-09-12 |
+| ah199503299 | Rest                                          | 2015-09-24 |
++-------------+-----------------------------------------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from ward_bill;
+Empty set (0.00 sec)
+
+mysql> 
+mysql> select * from ward_bill;
++-------------+--------+-------+------------+---------------+-------+
+| Pid         | Roomid | Bedid | AdmitDate  | DischargeDate | bill  |
++-------------+--------+-------+------------+---------------+-------+
+| ah199503299 |      1 |     1 | 2015-09-20 | 2015-09-28    |  5000 |
+| Ur19950590  |      1 |     2 | 2015-09-15 | 2015-09-28    | 10000 |
++-------------+--------+-------+------------+---------------+-------+
+2 rows in set (0.00 sec)
+
+
